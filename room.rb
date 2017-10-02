@@ -4,7 +4,7 @@ class Room
   def initialize(name, spaces)
     @name = name
     @songs = []
-    @guests =[]
+    @guests = []
     @spaces = spaces
     @entry_fee = 10
     @entry_spend = 0
@@ -30,13 +30,12 @@ class Room
   end
 
   def add_guest(guest)
-    if @guests.length < @spaces && guest.money > @entry_fee
-      @entry_spend += guest.pay!(@entry_fee)
-      @guests << guest
-      return guest.checkin_response(@songs)
-    else
-      raise RoomOverflowError
-    end
+    raise RoomOverflowError if @guests.length >= @spaces
+    raise RoomOverflowError if guest.money < @entry_fee
+
+    @entry_spend += guest.pay!(@entry_fee)
+    @guests << guest
+    guest.checkin_response(@songs)
   end
 
   def remove_guest(guest)

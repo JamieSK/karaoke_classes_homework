@@ -42,7 +42,7 @@ class TestRoom < MiniTest::Test
     @room.add_guest(@guest)
     @room.add_guest(@guest2)
     @room.add_guest(@guest3)
-    assert_raises(RoomOverflowError) {@room.add_guest(@guest4)}
+    assert_raises(RoomOverflowError) { @room.add_guest(@guest4) }
   end
 
   def test_whoo_at_favourite

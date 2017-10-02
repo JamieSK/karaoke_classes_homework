@@ -17,7 +17,7 @@ class Guest
 
   def checkin_response(songs)
     return 'Whoo!' if songs.include?(@favourite_song)
-    return nil
+    nil
   end
 
   def drink!(drink_effect)
